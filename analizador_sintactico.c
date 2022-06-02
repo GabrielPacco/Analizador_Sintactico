@@ -63,5 +63,6 @@ int main()
     preanalisis = getchar(); //lee un carácter
      //de la entrada
     S();
-    printf("La cadena se reconocio correctamente =) ");
+    printf("La cadena se reconocio correctamente =) \n\n");
 }//*/
+
