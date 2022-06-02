@@ -2,6 +2,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+/*
+Reconoce la siguiente gramática:
+S --> x S
+S --> A B c
+A --> a
+B --> b
+*/
+
 ///*
 int preanalisis;
 void error()
