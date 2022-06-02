@@ -3,13 +3,6 @@
 #include <stdlib.h>
 
 /*
-Reconoce la siguiente gramática:
-S --> x S
-S --> A B c
-A --> a
-B --> b
- 
-****************+
  
 Reconoce la siguiente gramática:
 S --> r S
@@ -65,8 +58,8 @@ void S()
         error();
 }
 
-// Reconoce x*abc
-// Ejemplo xxxxxxxxxxxx.....xxabc   ---> empieza con x y siempre debe terminar en abc
+// Reconoce r*aea
+// Ejemplo rrrrrrrrrrr...rraea   ---> empieza con r y siempre debe terminar en aea
 int main()
 {
     preanalisis = getchar(); //lee un carácter
