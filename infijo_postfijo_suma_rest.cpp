@@ -71,18 +71,10 @@ esta prioridad se usa al momento de leer el caracter
 de la cadena*/
 int prioridad_infija(char a)
 {
-    if (a == '^')
-        return 4;
-    if (a == '*')
-        return 2;
-    if (a == '/')
-        return 2;
     if (a == '+')
         return 1;
     if (a == '-')
         return 1;
-    if (a == '(')
-        return 5;
 }
 
 /*                 Prioridad en Pila
@@ -91,18 +83,10 @@ esta prioridad es usada para los elementos que se
 encuentran en la pila */
 int prioridad_pila(char a)
 {
-    if (a == '^')
-        return 3;
-    if (a == '*')
-        return 2;
-    if (a == '/')
-        return 2;
     if (a == '+')
         return 1;
     if (a == '-')
         return 1;
-    if (a == '(')
-        return 0;
 }
 
 void print(Ptrlist& lista)
@@ -122,54 +106,6 @@ void print(Ptrlist& lista)
     cout << endl << endl;
 }
 
-// Funcion para verificar si la cadena es valida
-void validarCadena(Ptrstack& p, char cad[])
-{
-    Ptrstack aux;
-    int i = 0;
-
-    while (cad[i] != '\0')
-    {
-        if (cad[i] == '(' || cad[i] == '[' || cad[i] == '{')
-        {
-            push(p, cad[i]);
-        }
-        else if (cad[i] == ')' || cad[i] == ']' || cad[i] == '}')
-        {
-            aux = p;
-
-            if (aux != nullptr)
-            {
-                if (cad[i] == ')')
-                {
-                    if (aux->caracter == '(')
-                        pop(p);
-                }
-                else if (cad[i] == ']')
-                {
-                    if (aux->caracter == '[')
-                        pop(p);
-                }
-                else if (cad[i] == '}')
-                {
-                    if (aux->caracter == '{')
-                        pop(p);
-                }
-            }
-            else
-                push(p, cad[i]);
-        }
-        i++;
-    }
-
-    if (p == nullptr)
-        cout << "\n\tBalanceo CORRECTO" << endl << endl;
-    else
-        cout << "\n\t Balanceo INCORRECTO" << endl;
-
-
-}
-
 int main()
 {
     Ptrstack p = nullptr;
@@ -184,7 +120,6 @@ int main()
     do {
         cout << "INGRESE EXPRESION:";
         gets_s(cad);
-        validarCadena(M, cad); //verificamos si los simbolos de agrupacion estan
     } while (M != nullptr);         //correctamente valanceados
 
     tam = strlen(cad);  // obtenemos el tamanho de la cadena
@@ -192,7 +127,7 @@ int main()
     {
         if ((cad[i] >= 49 && cad[i] <= 57) || (cad[i] >= 97 && cad[i] <= 122))//validado para numeros de 1-9 y letras
             agregar_atras(lista, cad[i]);
-        if (cad[i] == '+' || cad[i] == '-' || cad[i] == '*' || cad[i] == '/' || cad[i] == '(' || cad[i] == '^')
+        if (cad[i] == '+' || cad[i] == '-')
         {
             if (p == nullptr)
                 push(p, cad[i]);
@@ -215,16 +150,6 @@ int main()
                     }
                 }
             }
-        }
-        if (cad[i] == ')')
-        {
-            while (p->caracter != '(' && p != nullptr)//desempilamos y agregamos a lista
-            {
-                c = pop(p);
-                agregar_atras(lista, c);
-            }
-            if (p->caracter == '(')
-                c = pop(p);
         }
     }
     while (p != nullptr) //si es que la pila aun no esta nula pasamos los operadores a lista
