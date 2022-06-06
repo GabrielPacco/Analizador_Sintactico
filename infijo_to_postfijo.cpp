@@ -1,10 +1,3 @@
-#include <iostream>
-#include <stdio.h>
-#include <conio.h>
-#define max 50
-
-using namespace std;
-
 /*
 Gramática de la expresión infija:
 Exp --> Term Resto
@@ -17,6 +10,11 @@ Term --> {printf("1")} 1
 Term --> {printf("9")} 9
 
 */
+#include <iostream>
+#include <stdio.h>
+#include <conio.h>
+
+using namespace std;
 
 int preanalisis;
 
